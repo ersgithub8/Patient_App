@@ -29,6 +29,8 @@ public class PateintMain extends AppCompatActivity {
         managment=new SessionManagment();
 
         logout=findViewById(R.id.logout);
+
+        logout.setVisibility(View.GONE);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
