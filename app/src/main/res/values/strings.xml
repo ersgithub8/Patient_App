@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Patient App Orignal</string>
+    <string name="app_name">Patient App</string>
 
     <string name="no_bt_support">Your device doesn\'t support bluetooth.</string>
     <string name="empty_device_name">&lt;New device&gt;</string>
