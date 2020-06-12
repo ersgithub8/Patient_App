@@ -18,6 +18,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -89,8 +90,8 @@ public class MainActivity extends BaseActivity implements
     RecyclerView weight;
     WeightAdapter adapter;
     List<String> values=new ArrayList<>();
-
-
+    int counter=0;
+    TextView text;
     private MobileServiceClient mClient;
 
     /**
@@ -114,6 +115,7 @@ public class MainActivity extends BaseActivity implements
 
         setContentView(R.layout.activity_main);
 
+        text=findViewById(R.id.text);
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Measure ECG");
@@ -299,6 +301,8 @@ public class MainActivity extends BaseActivity implements
     private void addEntry(int value) {
 
         LineData data = chart.getData();
+
+//        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
 
         if (data != null) {
 
@@ -539,12 +543,13 @@ public class MainActivity extends BaseActivity implements
                                 String witval = "0";
 
 
+
                               //  Toast.makeText(activity, ""+readMessage, Toast.LENGTH_SHORT).show();
                                 //
                                 if (readMessage.length() < 5) {
                                     String[] nums = readMessage.split(":");
                                     final String ecg = readMessage.replaceAll("[^0-9]", "");
-                                    activity.addEntry(Integer.valueOf(ecg));
+//                                    activity.addEntry(Integer.valueOf(ecg));
                                     //Log.e("readmsg", "" + nums.length);
 
                                     ecgval = ecg;
@@ -559,6 +564,16 @@ public class MainActivity extends BaseActivity implements
                                     witval = wit;
                                 }
 
+                                activity.addEntry(Integer.parseInt(witval));
+
+
+                                activity.counter++;
+
+                                if(activity.counter%10==0){
+                                    activity.text.setText("ECG  "+witval);
+                                }
+
+//                                Toast.makeText(activity, ecgval+"     "+witval, Toast.LENGTH_SHORT).show();
                                 final String finalEcgval = ecgval;
                                 final String finalWitval = witval;
                                 ha.postDelayed(new Runnable() {
