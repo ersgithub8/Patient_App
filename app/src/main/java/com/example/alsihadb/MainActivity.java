@@ -18,6 +18,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -571,6 +572,16 @@ public class MainActivity extends BaseActivity implements
 
                                 if(activity.counter%10==0){
                                     activity.text.setText("ECG  "+witval);
+                                    TextView danger=activity.findViewById(R.id.dangerText);
+                                    if(Integer.parseInt(witval)>100){
+                                        danger.setText("Your ECG is too high");
+                                        danger.setVisibility(View.VISIBLE);
+                                    }else if(Integer.parseInt(witval)<0){
+                                        danger.setText("Your ECG is too low");
+                                        danger.setVisibility(View.VISIBLE);
+                                    }else{
+                                        danger.setVisibility(View.GONE);
+                                    }
                                 }
 
 //                                Toast.makeText(activity, ecgval+"     "+witval, Toast.LENGTH_SHORT).show();
