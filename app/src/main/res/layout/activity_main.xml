@@ -52,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/text"
         android:padding="20dp"
+        android:visibility="gone"
         android:textColor="#f00"
         android:textSize="17sp"
         android:drawableLeft="@drawable/alert"
